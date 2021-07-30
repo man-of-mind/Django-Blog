@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ post.title_tag }}
+{% endblock %}
+{% block content %}
+<h1>{{ post.title }}</h1>
+<small> {{ post.post_date }}
+    {% if user.is_superuser %}
+        - 
+        <a href="{% url 'edit-post' post.pk %}">Edit</a>
+            <a href="{% url 'delete-post' post.pk %}">Delete</a></small>
+    {% endif %}  
+</small>
+    <br>
+<hr>
+<br>
+{% if post.header_image %}
+    <img src="{{ post.header_image.url }}">
+{% endif %}
+<br>
+{{ post.body | safe }}
+
+<br/><br/>
+<a href="{% url 'home' %}" class="class=btn btn-secondary" style="padding: 5px;">Back</a>
+<br>
+<hr>
+<br>
+
+        
+{% if user.is_authenticated %}
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if not show_like %}
+            <button type="submit", name="post_id", value="{{ post.id }}", 
+                class="btn btn-danger btn-sm">Unlike</button> - {{ total_likes }} 
+        {% else %}
+            <button type="submit", name="post_id", value="{{ post.id }}", 
+                class="btn btn-primary btn-sm">Like</button> - {{ total_likes }}
+        {% endif %}
+        </form>
+{% endif %}
+<br>
+{% if user.is_authenticated %}
+    <form action="{% url 'dislike_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if not show_dislike %}
+        <button type="submit", name="dislike_id", value="{{ post.id }}", 
+            class="btn btn-secondary btn-sm">Un-disLike</button> - {{ total_dislikes }} 
+        {% else %}
+        <button type="submit", name="dislike_id", value="{{ post.id }}", 
+            class="btn btn-danger btn-sm">DisLike</button> - {{ total_dislikes }} 
+        {% endif %}      
+    </form>
+    <br></br>
+{% endif %}
+   
+{% if user.is_authenticated %}
+
+{% else %}
+    {{ total_likes }} Likes - {{ total_dislikes }} Dislikes
+    <br>
+    <a href="{% url 'login' %}">Login</a> or <a href="{% url 'register' %}">Register</a> to like or dislike!!!
+    <br>
+    <br>
+{% endif %}        
+
+<hr>
+<h2>Comments...</h2>
+{% if not post.comments.all %}
+    No Comments Yet... <a href="{% url 'add-comment' post.pk %}">Add One</a>
+    <br></br>
+{% else %}
+<br>
+<a href="{% url 'add-comment' post.pk %}">Add Comment</a>
+<br></br>
+    {% for comment in post.comments.all %}
+        <strong>{{ comment.name }} - 
+        {{ comment.comment_date }}</strong> 
+        <br>
+        {{ comment.body }}
+        <br></br>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

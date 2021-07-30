@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Post</h1>
+
+<ul>
+{% if object_list|length != 0 %}
+    {% for post in object_list %}
+        <li> <h4><a href="{% url 'detail-post' post.pk %}">
+            {{ post.title }} </h4></a> -  <b><small>{{ post.post_date }}, {{ post.post_time }}
+            </b>
+            </small>
+            {% if user.is_superuser %}
+                <small>
+                    <a href="{% url 'edit-post' post.pk %}">Edit</a> 
+                    <a href="{% url 'delete-post' post.pk %}">Delete</a>
+                </small>
+            {% endif %}
+            <br>
+            {{ post.snippet }}
+        </li>
+        <hr>
+    {% endfor %}
+{% else %}
+<h3>No post yet!</h3>
+{% endif %}
+</ul>
+
+{% endblock %}

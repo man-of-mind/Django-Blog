@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Edit A New blog post{% endblock %}
+{% block content %}
+
+{% if user.is_superuser %}
+    <h1>Update Blog Post...</h1>
+    <br>
+
+    <div class="mb-3">
+        <form method="POST", enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update</button>
+        </form>
+    </div>
+{% else %}
+You are not allowed here!!!
+{% endif %}    
+{% endblock %}
