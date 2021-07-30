@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-u=g&^l28(pk5=^$9gzca=%pr*f3y4*t#h(w#%6qtkkv-c+%t9k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://thawing-depths-48446.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
