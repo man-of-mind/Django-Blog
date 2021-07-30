@@ -82,11 +82,17 @@ WSGI_APPLICATION = 'timothyBlog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd6a7bsov6sb9ag',
+        'HOST': 'ec2-54-145-185-178.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'pzceqyjqkstqpb',
+        'PASSWORD': 'f6d3c90b0fb8913595f0f2aebde27e02b5a364cef514dda9b1ef371831d994fb',
+
     }
 }
 
+#postgres://pzceqyjqkstqpb:f6d3c90b0fb8913595f0f2aebde27e02b5a364cef514dda9b1ef371831d994fb@ec2-54-145-185-178.compute-1.amazonaws.com:5432/d6a7bsov6sb9ag
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
