@@ -6,6 +6,7 @@ A blog build with django. Matrix capstone project.
 Open the folder using any text editor, vs code, sublime etc. or pycharm.
 Ensure you have django installed on your local system.
 From your terminal, make sure you are in the capstoneProject/timothyBlog/ directory.
+Note that in the `settings.py file` important parameters like the `django secret key, cloudinary api key and password, postgresql user and password` were removed.
 ***
 Run `python manage.py runserver` 
 ***
