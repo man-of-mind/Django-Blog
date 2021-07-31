@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-#import django_heroku
-#import dj_database_url
-#from decouple import config
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'timmyBlog',
     'members',
     'ckeditor',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+
+
+cloudinary.config( 
+  cloud_name = "dmknxlj2o", 
+  api_key = "313863681294292", 
+  api_secret = "SZHt4PVd4QRQM_yzQY_Ivghbtg0",
+#  secure = true
+)

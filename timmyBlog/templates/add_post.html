@@ -6,9 +6,10 @@
     <br>
 
     <div class="mb-3">
+        {% load cloudinary %}
         <form method="POST", enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.media }}
+            {{ form.media }} 
             {{ form.as_p }}
             <button class="btn btn-secondary">Post</button>
         </form>

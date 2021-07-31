@@ -1,6 +1,6 @@
 from timmyBlog.views import HomePage
 from django.urls import path
-from .views import DetailPost, HomePage, AddPostView, UpdatePostView, DeletePostView, AddCommentView, LikeView, DislikeView
+from .views import AddPostView, DetailPost, HomePage, UpdatePostView, DeletePostView, AddCommentView, LikeView, DislikeView
 
 urlpatterns = [
     path('', HomePage.as_view(), name="home"),

@@ -1,14 +1,14 @@
 from django.db import models
-from django.db.models.fields.related import OneToOneField
 from django.urls import reverse
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+    header_image = CloudinaryField('image', null=True, blank=True)
     title_tag = models.CharField(max_length=255)
     body = RichTextField(blank=True, null=True)
     snippet = models.CharField(max_length=255)

@@ -17,7 +17,7 @@
 {% if post.header_image %}
     <img src="{{ post.header_image.url }}">
 {% endif %}
-<br>
+<br></br>
 {{ post.body | safe }}
 
 <br/><br/>
@@ -32,10 +32,10 @@
         {% csrf_token %}
         {% if not show_like %}
             <button type="submit", name="post_id", value="{{ post.id }}", 
-                class="btn btn-danger btn-sm">Unlike</button> - {{ total_likes }} 
+                class="btn btn-danger btn-sm">Unlike</button> - {{ total_likes }} Likes
         {% else %}
             <button type="submit", name="post_id", value="{{ post.id }}", 
-                class="btn btn-primary btn-sm">Like</button> - {{ total_likes }}
+                class="btn btn-primary btn-sm">Like</button> - {{ total_likes }} Likes
         {% endif %}
         </form>
 {% endif %}
@@ -45,10 +45,10 @@
         {% csrf_token %}
         {% if not show_dislike %}
         <button type="submit", name="dislike_id", value="{{ post.id }}", 
-            class="btn btn-secondary btn-sm">Un-disLike</button> - {{ total_dislikes }} 
+            class="btn btn-secondary btn-sm">Un-disLike</button> - {{ total_dislikes }} Dislikes
         {% else %}
         <button type="submit", name="dislike_id", value="{{ post.id }}", 
-            class="btn btn-danger btn-sm">DisLike</button> - {{ total_dislikes }} 
+            class="btn btn-danger btn-sm">DisLike</button> - {{ total_dislikes }} Dislikes
         {% endif %}      
     </form>
     <br></br>

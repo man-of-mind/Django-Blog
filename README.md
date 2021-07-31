@@ -5,7 +5,7 @@ A blog build with django. Matrix capstone project.
 ## To get started fork the repo to your local system.
 Open the folder using any text editor, vs code, sublime etc. or pycharm.
 Ensure you have django installed on your local system.
-From your terminal, make sure you are in the Matrix_CapstoneProject/timothyBlog/ directory.
+From your terminal, make sure you are in the capstoneProject/timothyBlog/ directory.
 ***
 Run `python manage.py runserver` 
 ***
@@ -36,4 +36,4 @@ An unregistered user or when not logged in, you can register or login using the 
 Whenever you make a change to any of the models.py file.
 Exit the server by pressing `Ctrl + C`
 Then run `python manage.py makemigrations` and `python manage.py migrate`
-After successful migration, run `python manage.py run server`
+After successful migration, run `python manage.py runserver`

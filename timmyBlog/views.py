@@ -1,12 +1,11 @@
 from django.db.models import fields
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.translation import templatize
 from timmyBlog.models import Post, Comment
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView,View
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from timmyBlog.forms import CommentForm, PostForm
+from cloudinary.forms import cl_init_js_callbacks 
 
 # Create your views here.
 class HomePage(ListView):
@@ -23,12 +22,10 @@ class DetailPost(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailPost, self).get_context_data()
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
-        dislike_stuff = get_object_or_404(Post, id=self.kwargs['pk'])
-        liked = False
         show_like = True
         show_dislike = True
         total_likes = stuff.number_of_likes()
-        total_dislikes = dislike_stuff.number_of_dislikes()
+        total_dislikes = stuff.number_of_dislikes()
         if stuff.likes.filter(id=self.request.user.id).exists() and not stuff.dislikes.filter(id=self.request.user.id).exists():
             show_like = False
             show_dislike = True
@@ -54,10 +51,12 @@ class AddPostView(CreateView):
     template_name = 'add_post.html'
 
 
+
 class UpdatePostView(UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'update_post.html'
+
 
 
 class DeletePostView(DeleteView):
@@ -70,12 +69,13 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'add-comment.html'
-#    fields = '__all__'
     success_url = reverse_lazy('home')
+
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
 
+    
 
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
